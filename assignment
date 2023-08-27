@@ -1,0 +1,39 @@
+ @@-2,17 +2,17 @@ Q1 db.employee.updateOne({"Designation":"Recruiter"},{$set:{"Designation":"Admin
+
+ Q2 db.employee.updateMany({'project.Pname':['Project-1','Project-2']},{$set:{'project.Phrs':10}})
+
+ *Q3
+ Q3> db.employee.updateMany({"Ename":/^Aks/},{$push:{"project":{$each:[{"Pname":"Project-1","Phrs":3},{"Pname":"Project-2","Phrs":4} ] } } } )
+
+ *Q4 > db.employee.updateMany({salary: {$gt:50000}},{$inc:{salary:2000}})
+ Q4 > db.employee.updateMany({salary: {$gt:50000}},{$inc:{salary:2000}})
+
+ Q5 > db.employee.updateMany({'Manager.Mname':'Akshat'},{$set:{'Manager.Mname':'Tushar'}, $set:{'Manager.Mnum':3333}})
+
+ Q6 > db.employee.updateMany({'dept.Dname':"Technical"},{$inc:{'salary':15000}})
+
+ *Q7 > db.employee.updateMany({'project.Pname':"Project-4"},{$inc:{'project.Phrs':-2}})
+ Q7 > db.employee.updateMany({'project.Pname':"Project-4"},{$inc:{'project.Phrs':-2}})
+
+ *Q8 > db.employee.deleteMany({'project.Phrs':8})
+ Q8 >
+
+ Q9 > db.employee.updateMany({'salary': {$lt:60000}},{$set:{'salary':70000}})
+
+ @@ -29,7 +29,7 @@ Q14 > db.employee.updateMany({$or:[{"Ename":"Lakshay Yadav"},{"Ename":"Ritesh Dh
+ Q15 >
+ db.employee.updateMany({$or:[{$and:[{"project.Pname":"Project-10"},{"project.Phrs":6}]},{$and:[{"project.Pname":"Project-4"},{"project.Phrs":6}]}]},{$set:{"skillset":["HTML","CSS","MERN","Git"]}})
+
+ Q16 > Regex
+ Q16 > > db.employee.updateMany({$and:[{"Ename":/^A/},{"Ename":{$regex:"l$"}}]},{$push:{"Hobbies":"blogging"}})
+
+ Q17 
+ i. > db.employee.updateMany({$or:[{"project.Pname":"Project-4"},{"project.Pname":"Project-5"}]},{$inc:{salary:10000}})
+ @@ -46,3 +46,7 @@ Q21 > db.employee.updateMany({"dept.Dlocation":"Delhi"},{$push:{"skillset":{$eac
+ Q22 > db.employee.updateMany({$or:[{"project.Pname":"Project-10"},{"project.Pname":"Project-5"}]},{$pop:{"hobbies":1}})
+
+ Q23 > 
+
+ Q24 > db.employee.updateMany({$and:[{'skillset':'JAVA'},{'skillset':'GIT'}]},{$push:{project:{$each:[{"Pname":"MyNewProject1","Phrs":10},{"Pname":"MyNewProject2","Phrs":12}]}}})
+
+ Q25 > db.employee.updateMany({$and:[{"project.Pname":"Project-10"},{"project.Phrs" :{$lt: 10}}]},{$set:{"project.$.Phrs":10}})
